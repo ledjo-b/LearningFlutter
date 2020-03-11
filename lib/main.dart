@@ -25,6 +25,12 @@ class _QuoteListState extends State<QuoteList> {
     Quote(
         text: 'If you tell the truth, you dont have to remember anything',
         author: 'Mark Twain'),
+        Quote(
+        text: 'Be yourself everyone else is already taken.',
+        author: 'Oscar Wilde'),
+        Quote(
+        text: 'Be yourself everyone else is already taken.',
+        author: 'Oscar Wilde'),
   ];
 
   @override
@@ -36,8 +42,17 @@ class _QuoteListState extends State<QuoteList> {
         centerTitle: true,
         backgroundColor: Colors.redAccent,
       ),
-      body: Column(
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+      body: SingleChildScrollView(
+              child: Column(
+          children: quotes.map((quote) => QuoteCard(
+            quote: quote,
+            delete: () {
+               setState(() {
+                 quotes.remove(quote);
+               });
+            }
+            )).toList(),
+        ),
       ),
     );
   }
